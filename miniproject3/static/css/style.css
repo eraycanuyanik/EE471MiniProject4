@@ -1,0 +1,309 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* Shared brown gradient used by ALL three boxes (prompt, chat-output, chat-input pill).
+       Same stops — top very dark brown, bottom medium warm brown. Each box renders
+       the full gradient across its own height (no cropping). */
+    --card-grad: linear-gradient(180deg, #672e10 0%, #5b2d14 28%, #46291a 60%, #322013 88%, #28180d 100%);
+    --card-shadow:
+        inset 0 1px 0 rgba(255, 200, 140, 0.16),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.45),
+        0 8px 22px rgba(0, 0, 0, 0.6);
+    --placeholder-color: #e9d4b1;
+}
+
+html, body {
+    height: 100%;
+    font-family: "Cormorant Garamond", "Georgia", serif;
+    color: #f6e9d8;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 0;
+    background:
+        linear-gradient(180deg, #0c0603 0%, #3d2111 12%, #753a1d 28%, #8a5b3d 55%, #6e4127 80%, #b89d8b 100%);
+    background-attachment: fixed;
+}
+
+/* ==================== Phone container ==================== */
+.phone {
+    width: 100%;
+    max-width: 440px;
+    padding: 28px 24px 40px;
+    color: #f6e9d8;
+}
+
+/* ==================== Brand / Header ==================== */
+.brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 14px;
+}
+
+.logo {
+    font-family: "Cinzel", "Cormorant Garamond", serif;
+    font-weight: 500;
+    line-height: 1;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+.logo-robo {
+    color: #f7ecdc;
+    font-size: 38px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+.logo-munch {
+    color: #d99a4e;
+    font-weight: 400;
+    font-size: 20px;
+    letter-spacing: 3px;
+}
+
+.avatar {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow:
+        0 0 0 1px rgba(216, 160, 100, 0.6),
+        0 4px 14px rgba(0, 0, 0, 0.55);
+}
+
+/* ==================== Studio Sections ==================== */
+.studio { margin-top: 18px; }
+
+.studio-title {
+    text-align: center;
+    font-family: "Cormorant Garamond", serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    color: #f4e6d3;
+    margin-bottom: 16px;
+    letter-spacing: 0.4px;
+}
+
+/* ==================== Image Output ==================== */
+.image-output {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 4px;
+    background: #0a0502;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        inset 0 0 30px rgba(0, 0, 0, 0.7),
+        0 4px 14px rgba(0, 0, 0, 0.5);
+}
+.image-output img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.image-output .placeholder {
+    color: #8a6a4f;
+    font-style: italic;
+    font-size: 16px;
+    text-align: center;
+    padding: 12px;
+}
+.image-output.loading::after {
+    content: "Painting...";
+    color: #f0c891;
+    font-style: italic;
+}
+.image-output.loading .placeholder,
+.image-output.loading img { display: none; }
+
+/* ==================== Prompt Box ==================== */
+.prompt-box {
+    margin-top: 18px;
+    position: relative;
+    padding: 18px 64px 30px 22px;
+    min-height: 96px;
+    background: var(--card-grad);
+    border-radius: 18px;
+    box-shadow: var(--card-shadow);
+}
+
+.prompt-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #f7ecdc;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+}
+.prompt-input::placeholder {
+    color: var(--placeholder-color);
+    font-style: normal;
+    font-weight: 500;
+    opacity: 1;
+}
+
+.paint-btn {
+    position: absolute;
+    right: 14px;
+    bottom: 12px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background: radial-gradient(circle at 30% 28%, #eea35a 0%, #c66a25 65%, #7a330d 100%);
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 220, 180, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.1s ease;
+}
+.paint-btn:hover { transform: translateY(-1px); }
+.paint-btn:active { transform: translateY(1px); }
+.paint-btn img { width: 24px; height: 24px; }
+
+/* ==================== Chat Output ==================== */
+.chat-output {
+    padding: 18px 20px;
+    min-height: 150px;
+    max-height: 260px;
+    overflow-y: auto;
+    background: var(--card-grad);
+    border-radius: 18px;
+    box-shadow: var(--card-shadow);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 16.5px;
+    line-height: 1.45;
+    color: #f7ecdc;
+}
+.chat-output .turn {
+    margin-bottom: 12px;
+    font-style: italic;
+}
+.chat-output .turn:last-child { margin-bottom: 0; }
+.chat-output .who {
+    font-weight: 700;
+    font-style: italic;
+    letter-spacing: 0.3px;
+    color: #fff4e0;
+}
+.chat-output .empty {
+    color: #d6b791;
+    font-style: italic;
+    text-align: center;
+}
+
+/* ==================== Chat Input Row ==================== */
+.chat-input-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.mic-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    flex-shrink: 0;
+    cursor: pointer;
+    background: radial-gradient(circle at 30% 28%, #c97539 0%, #823611 70%, #4a1c06 100%);
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 220, 180, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.1s ease;
+}
+.mic-btn:hover { transform: translateY(-1px); }
+.mic-btn.recording {
+    box-shadow:
+        0 0 0 3px rgba(255, 100, 100, 0.55),
+        0 4px 10px rgba(0, 0, 0, 0.55);
+}
+.mic-btn img { width: 22px; height: 22px; }
+
+.chat-box {
+    flex: 1;
+    position: relative;
+    padding: 14px 52px 14px 22px;
+    /* Same gradient as the other cards — full top-to-bottom inside the pill,
+       so it reads as dark brown on top, medium brown on the bottom. */
+    background: var(--card-grad);
+    border-radius: 999px;
+    box-shadow: var(--card-shadow);
+}
+.chat-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #f7ecdc;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+}
+.chat-input::placeholder {
+    color: var(--placeholder-color);
+    font-style: normal;
+    font-weight: 500;
+    opacity: 1;
+}
+
+.send-btn {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid #eab787;
+    cursor: pointer;
+    background: radial-gradient(circle at 30% 28%, #b86a32 0%, #7a3414 70%, #4a1c06 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.1s ease;
+}
+.send-btn:hover { transform: translateY(-50%) scale(1.05); }
+.send-btn img { width: 16px; height: 16px; }
+
+/* ==================== Misc ==================== */
+.error-banner {
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: rgba(120, 30, 20, 0.7);
+    color: #ffd9c8;
+    border-radius: 8px;
+    font-size: 14px;
+    font-style: italic;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-thumb { background: #5a3219; border-radius: 4px; }
+::-webkit-scrollbar-track { background: transparent; }

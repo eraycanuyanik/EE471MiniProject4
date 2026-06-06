@@ -1,0 +1,51 @@
+# Secrets - never commit
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+secrets/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+env/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.swp
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# HuggingFace model cache
+.cache/
+*.bin
+*.safetensors
+
+# Flutter platform-generated (recreated by `flutter create .`)
+robomunch_app/ios/Pods/
+robomunch_app/ios/.symlinks/
+robomunch_app/android/.gradle/
+robomunch_app/android/local.properties

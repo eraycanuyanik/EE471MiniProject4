@@ -1,0 +1,41 @@
+name: Semantic Versioning - Tag Release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "VERSION"
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    name: Tag from VERSION file
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Read version
+        id: version
+        run: echo "version=$(cat VERSION | tr -d '[:space:]')" >> "$GITHUB_OUTPUT"
+      - name: Check semver format
+        run: |
+          v="${{ steps.version.outputs.version }}"
+          echo "Validating $v"
+          [[ "$v" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "Not a valid X.Y.Z version"; exit 1; }
+      - name: Tag if not exists
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          v="v${{ steps.version.outputs.version }}"
+          if git rev-parse "$v" >/dev/null 2>&1; then
+            echo "Tag $v already exists, skipping."
+          else
+            git config user.name  "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git tag -a "$v" -m "Release $v"
+            git push origin "$v"
+            echo "Tagged $v"
+          fi

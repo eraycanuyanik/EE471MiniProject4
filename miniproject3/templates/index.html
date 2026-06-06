@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RoboMunch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+    <main class="phone">
+        <header class="brand">
+            <h1 class="logo"><span class="logo-robo">ROBO</span> <span class="logo-munch">MUNCH</span></h1>
+            <img class="avatar" src="{{ url_for('static', filename='images/munch.png') }}" alt="Edvard Munch" />
+        </header>
+
+        <section class="studio">
+            <h2 class="studio-title">Art Studio</h2>
+
+            <div class="image-output" id="imageOutput">
+                <div class="placeholder">Your painting appears here.</div>
+            </div>
+
+            <div class="prompt-box">
+                <input type="text" id="promptInput" class="prompt-input" placeholder="Type your prompt here." />
+                <button id="paintBtn" class="paint-btn" type="button" aria-label="Paint">
+                    <img src="{{ url_for('static', filename='images/palette.png') }}" alt="" />
+                </button>
+            </div>
+        </section>
+
+        <section class="studio">
+            <h2 class="studio-title">Chat Studio</h2>
+
+            <div class="chat-output" id="chatOutput"></div>
+
+            <div class="chat-input-row">
+                <button id="micBtn" class="mic-btn" type="button" aria-label="Voice input">
+                    <img src="{{ url_for('static', filename='images/mic.png') }}" alt="" />
+                </button>
+                <div class="chat-box">
+                    <input type="text" id="chatInput" class="chat-input" placeholder="Type your message here." />
+                    <button id="sendBtn" class="send-btn" type="button" aria-label="Send">
+                        <img src="{{ url_for('static', filename='images/send.png') }}" alt="" />
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

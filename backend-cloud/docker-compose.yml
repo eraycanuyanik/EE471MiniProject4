@@ -1,0 +1,11 @@
+services:
+  backend:
+    build: .
+    image: robomunch/backend-cloud:latest
+    container_name: robomunch-backend-cloud
+    ports:
+      - "8000:8000"
+    environment:
+      DJANGO_DEBUG: "False"
+      DJANGO_ALLOWED_HOSTS: "*"
+    restart: unless-stopped

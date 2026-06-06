@@ -1,0 +1,8 @@
+flask==3.0.3
+flask-cors==4.0.1
+python-dotenv==1.0.1
+requests==2.32.3
+huggingface_hub>=0.27.0
+transformers>=4.44.0
+torch>=2.2.0
+accelerate>=0.30.0
