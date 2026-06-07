@@ -22,3 +22,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/munch.png
+    - assets/palette.png
+    - assets/mic.png
+    - assets/send.png
